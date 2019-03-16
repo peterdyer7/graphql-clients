@@ -25,7 +25,7 @@ export default function AmplifyTodo() {
       <Grid stackable columns={2}>
         <Grid.Column>
           <Segment>
-            <Connect query={graphqlOperation(queries.listTodos)}>
+            <Connect query={graphqlOperation(queries.listTodos, { limit: 10 })}>
               {({ data, loading, error }) => {
                 if (error)
                   return <Header as="h4">Error: {error.message}</Header>;
