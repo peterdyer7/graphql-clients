@@ -41,7 +41,11 @@ function UrqlTodo() {
       <Grid stackable columns={2}>
         <Grid.Column>
           <Segment>
-            <Query query={gql(queries.listTodos)} variables={{ limit: 10 }}>
+            <Query
+              query={gql(queries.listTodos)}
+              variables={{ limit: 10 }}
+              requestPolicy="cache-and-network"
+            >
               {({ fetching, data, error }) => {
                 if (error)
                   return <Header as="h4">Error: {error.message}</Header>;
