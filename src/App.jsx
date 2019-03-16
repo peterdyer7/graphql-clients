@@ -2,7 +2,8 @@ import React from 'react';
 import { Menu } from 'semantic-ui-react';
 import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
 
-import Urql from './Urql/Urql';
+import AmplifyTodo from './AmplifyTodo/AmplifyTodo';
+import UrqlTodo from './UrqlTodo/UrqlTodo';
 
 export default function App() {
   return (
@@ -16,7 +17,8 @@ export default function App() {
         </Menu.Item>
       </Menu>
       <Switch>
-        <Route path="/urql/" component={Urql} />
+        <Route path="/amplify/" component={AmplifyTodo} />
+        <Route path="/urql/" component={UrqlTodo} />
       </Switch>
     </BrowserRouter>
   );
