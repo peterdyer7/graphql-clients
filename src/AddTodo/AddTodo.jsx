@@ -1,7 +1,7 @@
 import React from 'react';
 import { Header, Form, Button } from 'semantic-ui-react';
 
-export default function AddTodo({ addTodo }) {
+export default function AddTodo({ addTodo, isApollo = false }) {
   const [todo, setTodo] = React.useState({ name: '', description: '' });
 
   function handleChange(e) {
@@ -11,7 +11,11 @@ export default function AddTodo({ addTodo }) {
   function handleSubmit(e) {
     e.preventDefault();
     console.log(todo);
-    addTodo({ input: todo });
+    if (isApollo) {
+      addTodo({ variables: { input: todo } });
+    } else {
+      addTodo({ input: todo });
+    }
   }
 
   return (

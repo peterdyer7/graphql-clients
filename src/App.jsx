@@ -3,6 +3,7 @@ import { Menu } from 'semantic-ui-react';
 import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
 
 import AmplifyTodo from './AmplifyTodo/AmplifyTodo';
+import AppSyncTodo from './AppSyncTodo/AppSyncTodo';
 import UrqlTodo from './UrqlTodo/UrqlTodo';
 import UrqlTodoHooks from './UrqlTodoHooks/UrqlTodoHooks';
 
@@ -13,6 +14,9 @@ export default function App() {
         <Menu.Item as={NavLink} to="/amplify">
           Amplify
         </Menu.Item>
+        <Menu.Item as={NavLink} to="/appsync">
+          AppSync
+        </Menu.Item>
         <Menu.Item as={NavLink} to="/urql">
           Urql
         </Menu.Item>{' '}
@@ -22,6 +26,7 @@ export default function App() {
       </Menu>
       <Switch>
         <Route path="/amplify/" component={AmplifyTodo} />
+        <Route path="/appsync/" component={AppSyncTodo} />
         <Route path="/urql/" component={UrqlTodo} />{' '}
         <Route path="/urqlhooks/" component={UrqlTodoHooks} />
       </Switch>
