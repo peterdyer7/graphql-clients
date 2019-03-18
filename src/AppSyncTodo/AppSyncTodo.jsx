@@ -73,7 +73,9 @@ function AppSyncTodo() {
                 { query: gql(queries.listTodos), variables: { limit: 10 } }
               ]}
             >
-              {(createTodo) => <AddTodo addTodo={createTodo} isApollo={true} />}
+              {(createTodo) => (
+                <AddTodo addTodo={createTodo} usesVariables={true} />
+              )}
             </Mutation>
           </Segment>
         </Grid.Column>
