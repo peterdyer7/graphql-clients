@@ -5,7 +5,7 @@ import {
   Grid,
   Dimmer,
   Loader,
-  Header
+  Message
 } from 'semantic-ui-react';
 import { Provider, createClient, useQuery, useMutation } from 'urql';
 
@@ -42,24 +42,19 @@ function UrqlTodoHooks() {
   });
   const [resMutation, executeMutation] = useMutation(mutations.createTodo);
 
-  if (resQuery.fetching) {
-    return (
-      <Dimmer active>
-        <Loader />
-      </Dimmer>
-    );
-  } else if (resQuery.error) {
-    return <Header as="h4">Error: {resQuery.error.message}</Header>;
-  }
-  if (resMutation.error) {
-    return <Header as="h4">Error: {resMutation.error.message}</Header>;
-  }
-
   return (
     <Container>
       <Grid stackable columns={2}>
         <Grid.Column>
           <Segment>
+            {resQuery.fetching && (
+              <Dimmer active>
+                <Loader />
+              </Dimmer>
+            )}
+            {resQuery.error && (
+              <Message negative>Error: {resQuery.error.message}</Message>
+            )}
             {resQuery.data &&
               resQuery.data.listTodos &&
               resQuery.data.listTodos.items && (
@@ -70,6 +65,9 @@ function UrqlTodoHooks() {
         <Grid.Column>
           <Segment>
             <AddTodo addTodo={executeMutation} />
+            {resQuery.error && (
+              <Message negative>Error: {resMutation.error.message}</Message>
+            )}
           </Segment>
         </Grid.Column>
       </Grid>

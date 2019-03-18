@@ -1,11 +1,11 @@
 import React from 'react';
 import {
-  Header,
   Container,
   Dimmer,
   Loader,
   Segment,
-  Grid
+  Grid,
+  Message
 } from 'semantic-ui-react';
 import ApolloClient from 'apollo-client';
 import { createHttpLink } from 'apollo-link-http';
@@ -56,21 +56,17 @@ function ReactApolloHooksTodo() {
   const { data, error, loading } = useQuery(gql(queries.listTodos));
   const executeMutation = useMutation(gql(mutations.createTodo));
 
-  if (loading) {
-    return (
-      <Dimmer active>
-        <Loader />
-      </Dimmer>
-    );
-  } else if (error) {
-    return <Header as="h4">Error: {error.message}</Header>;
-  }
-
   return (
     <Container>
       <Grid stackable columns={2}>
         <Grid.Column>
           <Segment>
+            {loading && (
+              <Dimmer active>
+                <Loader />
+              </Dimmer>
+            )}
+            {error && <Message negative>Error: {error.message}</Message>}
             {data && data.listTodos && data.listTodos.items && (
               <ListTodos todos={data.listTodos.items} />
             )}

@@ -5,7 +5,7 @@ import {
   Grid,
   Dimmer,
   Loader,
-  Header
+  Message
 } from 'semantic-ui-react';
 import {
   GraphQLClient,
@@ -44,21 +44,17 @@ function GraphqlHooksTodo() {
   });
   const [executeMutation] = useMutation(mutations.createTodo);
 
-  if (loading) {
-    return (
-      <Dimmer active>
-        <Loader />
-      </Dimmer>
-    );
-  } else if (error) {
-    return <Header as="h4">Error: {error.message}</Header>;
-  }
-
   return (
     <Container>
       <Grid stackable columns={2}>
         <Grid.Column>
           <Segment>
+            {loading && (
+              <Dimmer active>
+                <Loader />
+              </Dimmer>
+            )}
+            {error && <Message negative>Error: {error.message}</Message>}
             {data && data.listTodos && data.listTodos.items && (
               <ListTodos todos={data.listTodos.items} />
             )}

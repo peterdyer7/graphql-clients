@@ -1,10 +1,17 @@
 import React from 'react';
 import { Menu } from 'semantic-ui-react';
-import { BrowserRouter, Switch, Route, NavLink } from 'react-router-dom';
+import {
+  BrowserRouter,
+  Switch,
+  Route,
+  NavLink,
+  Redirect
+} from 'react-router-dom';
 
+import Home from './Home/Home';
 import AmplifyTodo from './AmplifyTodo/AmplifyTodo';
 import AppSyncTodo from './AppSyncTodo/AppSyncTodo';
-import ApolloTodo from './ApolloTodo/ApolloTodo';
+import ApolloClientTodo from './ApolloClientTodo/ApolloClientTodo';
 import ReactApolloHooksTodo from './ReactApolloHooksTodo/ReactApolloHooksTodo';
 import UrqlTodo from './UrqlTodo/UrqlTodo';
 import UrqlTodoHooks from './UrqlTodoHooks/UrqlTodoHooks';
@@ -14,6 +21,9 @@ export default function App() {
   return (
     <BrowserRouter>
       <Menu>
+        <Menu.Item as={NavLink} to="/home">
+          Home
+        </Menu.Item>
         <Menu.Item as={NavLink} to="/amplify">
           Amplify
         </Menu.Item>
@@ -37,13 +47,15 @@ export default function App() {
         </Menu.Item>
       </Menu>
       <Switch>
+        <Route path="/home/" component={Home} />
         <Route path="/amplify/" component={AmplifyTodo} />
         <Route path="/appsync/" component={AppSyncTodo} />
-        <Route path="/apollo/" component={ApolloTodo} />
+        <Route path="/apollo/" component={ApolloClientTodo} />
         <Route path="/reactapollohooks/" component={ReactApolloHooksTodo} />
         <Route path="/urql/" component={UrqlTodo} />
         <Route path="/urqlhooks/" component={UrqlTodoHooks} />
         <Route path="/graphqlhooks/" component={GraphqlHooksTodo} />
+        <Redirect to="/home/" />
       </Switch>
     </BrowserRouter>
   );

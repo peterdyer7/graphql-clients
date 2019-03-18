@@ -5,7 +5,8 @@ import {
   Dimmer,
   Loader,
   Segment,
-  Grid
+  Grid,
+  Message
 } from 'semantic-ui-react';
 import Amplify, { graphqlOperation } from 'aws-amplify';
 import { Connect } from 'aws-amplify-react';
@@ -28,7 +29,7 @@ export default function AmplifyTodo() {
             <Connect query={graphqlOperation(queries.listTodos, { limit: 10 })}>
               {({ data, loading, error }) => {
                 if (error)
-                  return <Header as="h4">Error: {error.message}</Header>;
+                  return <Message negative>Error: {error.message}</Message>;
                 if (loading)
                   return (
                     <Dimmer active>

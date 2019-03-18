@@ -1,7 +1,7 @@
 import React from 'react';
 import { Header, Form, Button } from 'semantic-ui-react';
 
-export default function AddTodo({ addTodo, usesVariables = false, refetch }) {
+export default function AddTodoOptimistic({ addTodo, listTodosQuery }) {
   const [todo, setTodo] = React.useState({ name: '', description: '' });
 
   function handleChange(e) {
@@ -11,14 +11,28 @@ export default function AddTodo({ addTodo, usesVariables = false, refetch }) {
   function handleSubmit(e) {
     e.preventDefault();
     console.log(todo);
-    if (usesVariables) {
-      addTodo({ variables: { input: todo } });
-    } else {
-      addTodo({ input: todo });
-    }
-    if (refetch) {
-      refetch();
-    }
+
+    addTodo({
+      variables: { input: todo },
+      optimisticResponse: {
+        createTodo: {
+          id: Math.round(Math.random() * -1000000),
+          name: todo.name,
+          description: todo.description,
+          __typename: 'Todo'
+        }
+      },
+      update: (cache, { data: { createTodo } }) => {
+        const cachedTodos = cache.readQuery({
+          query: listTodosQuery
+        });
+        cachedTodos.listTodos.items.push(createTodo);
+        cache.writeQuery({
+          query: listTodosQuery,
+          data: cachedTodos
+        });
+      }
+    });
   }
 
   return (
