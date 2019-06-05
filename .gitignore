@@ -32,9 +32,3 @@ dist/
 node_modules/
 aws-exports.js
 awsconfiguration.json
-.graphqlconfig.yml
-amplify/backend/api/graphqlClients/stacks/CustomResources.json
-amplify/backend/api/graphqlClients/parameters.json
-amplify/backend/backend-config.json
-amplify/.config/project-config.json
-amplify/team-provider-info.json

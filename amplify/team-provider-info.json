@@ -1,0 +1,14 @@
+{
+    "dev": {
+        "awscloudformation": {
+            "AuthRoleName": "graphql-clients-dev-20190604212634-authRole",
+            "UnauthRoleArn": "arn:aws:iam::027056559285:role/graphql-clients-dev-20190604212634-unauthRole",
+            "AuthRoleArn": "arn:aws:iam::027056559285:role/graphql-clients-dev-20190604212634-authRole",
+            "Region": "us-east-1",
+            "DeploymentBucketName": "graphql-clients-dev-20190604212634-deployment",
+            "UnauthRoleName": "graphql-clients-dev-20190604212634-unauthRole",
+            "StackName": "graphql-clients-dev-20190604212634",
+            "StackId": "arn:aws:cloudformation:us-east-1:027056559285:stack/graphql-clients-dev-20190604212634/f4b76370-8730-11e9-a7b9-1253a26d999e"
+        }
+    }
+}
