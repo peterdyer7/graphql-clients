@@ -1,5 +1,8 @@
 import React from 'react';
 import { Header, Form, Button } from 'semantic-ui-react';
+import gql from 'graphql-tag';
+
+import * as queries from '../graphql/queries';
 
 export default function AddTodoOptimistic({ addTodo, listTodosQuery }) {
   const [todo, setTodo] = React.useState({ name: '', description: '' });
