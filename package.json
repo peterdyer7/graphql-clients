@@ -8,7 +8,7 @@
     "apollo-client": "^2.6.1",
     "apollo-link-context": "^1.0.17",
     "apollo-link-http": "^1.5.14",
-    "aws-amplify": "^1.1.28",
+    "aws-amplify": "^6.15.7",
     "aws-amplify-react": "^2.3.8",
     "aws-appsync": "^1.8.0",
     "aws-appsync-react": "^1.2.8",
